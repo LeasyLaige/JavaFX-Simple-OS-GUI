@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.ambassadors.javafxsimpleosgui/com.ambassadors.javafxsimpleosgui.HelloApplication
+                                com.ambassadors.javafxsimpleosgui/com.ambassadors.javafxsimpleosgui.CardinalOS
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
