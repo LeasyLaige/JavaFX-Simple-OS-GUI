@@ -13,7 +13,7 @@
         <!-- 2. TOP MENU BAR (MEMBER 1) -->
         <HBox alignment="CENTER_LEFT" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label styleClass="menu-bar-label" text="Top Menu Bar Area (Member 2 adds logo/menus)" />
+                <Label styleClass="menu-bar-label" text="Top Menu Bar Area (Dharl adds logo/menus)" />
             </children>
         </HBox>
 
@@ -45,14 +45,14 @@
                 </HBox>
                 <AnchorPane styleClass="window-content">
                     <children>
-                        <Label styleClass="placeholder-label" text="Terminal Content (Member 2/3)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Label styleClass="placeholder-label" text="Terminal Content (Dharl &amp; Janxen)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                     </children>
                 </AnchorPane>
             </children>
         </VBox>
 
         <!-- 4. BOTTOM DOCK (MEMBER 1 & 2) -->
-        <HBox alignment="CENTER" styleClass="dock" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER" layoutX="-74.0" layoutY="658.0" prefWidth="1378.0" styleClass="dock" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-22.0" AnchorPane.rightAnchor="-24.0">
             <children>
                 <!-- "Start" Button -->
                 <!-- fx:id links this button -->
