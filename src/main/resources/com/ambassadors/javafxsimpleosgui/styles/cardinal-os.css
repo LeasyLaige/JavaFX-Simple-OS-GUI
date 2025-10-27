@@ -50,6 +50,12 @@
     -fx-stroke-width: 1.8;
 }
 
+.dock-icon2 {
+    -fx-fill: transparent;
+    -fx-stroke: red;
+    -fx-stroke-width: 1.8;
+}
+
 /* Special hover for start button icon */
 .dock-button:hover > .dock-icon {
     -fx-stroke: #fcd34d; /* amber-300 */
@@ -69,15 +75,15 @@
 
 /* --- 4. START MENU --- */
 .start-menu {
-    -fx-background-color: rgba(17, 24, 39, 0.7);
+    -fx-background-color: rgba(10, 14, 21, 1);
     -fx-background-radius: 16px;
     -fx-border-radius: 16px;
-    -fx-border-color: rgba(255, 255, 255, 0.1);
-    -fx-border-width: 1px;
+    -fx-border-color: #4B5563;
+    -fx-border-width: 0.5px;
     -fx-pref-width: 320px;
-    -fx-pref-height: 384px;
+    -fx-pref-height: 280px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 10);
-    -fx-padding: 16px;
+    /* -fx-padding: 16px; */
 }
 
 .placeholder-label {
@@ -90,6 +96,22 @@
     -fx-border-radius: 12px;
     -fx-max-width: Infinity;
     -fx-max-height: Infinity;
+}
+
+.centerBox {
+    -fx-background-color: rgba(16, 21, 31, 1);
+    -fx-pref-width: 320px;
+    -fx-border-color: transparent transparent #4B5563 transparent;
+    -fx-border-width: 0 0 0.5px 0;
+}
+
+.start-search-bar {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+    -fx-background-color: rgba(24, 31, 42, 1);
+    -fx-border-color: #4B5563;
+    -fx-border-radius: 10px;
+    -fx-text-fill: white;
 }
 
 
@@ -126,5 +148,53 @@
 .window-button-max { -fx-background-color: #22C55E; -fx-pref-width: 14px; -fx-pref-height: 14px; -fx-background-radius: 7; }
 
 .window-content {
-    -fx-padding: 16px;
+    -fx-background-color: rgb(25, 20, 30);
+    -fx-control-inner-background: rgb(25, 20, 30);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 10);
+    -fx-text-fill: white;
+    -fx-highlight-fill: rgba(255, 255, 255, 0.2);
+    -fx-font-family: Consolas;
+    -fx-font-size: 13px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 360px;
 }
+
+/* target internal layers */
+.window-content .scroll-pane,
+.window-content .viewport,
+.window-content .content,
+.window-content .text {
+    -fx-background-color: rgb(15, 20, 30);
+}
+
+/* --- 5. NOTEPAD WINDOW --- */
+.notepad {
+    -fx-background-color: gray;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20, 0, 0, 10);
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+.notepad-title-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-pref-height: 40px;
+    -fx-padding: 0 16px;
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: center-left;
+    -fx-spacing: 10px;
+} 
+
+.notepad-title-label {
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+} 
+
+.notepad-button-close { -fx-background-color: #EF4444; -fx-pref-width: 14px; -fx-pref-height: 14px; -fx-background-radius: 7; }
+.notepad-button-min { -fx-background-color: #FBBF24; -fx-pref-width: 14px; -fx-pref-height: 14px; -fx-background-radius: 7; }
+.notepad-button-max { -fx-background-color: #22C55E; -fx-pref-width: 14px; -fx-pref-height: 14px; -fx-background-radius: 7; }
+

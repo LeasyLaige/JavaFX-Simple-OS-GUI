@@ -2,13 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane fx:id="desktopPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles/cardinal-os.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ambassadors.javafxsimpleosgui.CardinalOSController">
+<AnchorPane fx:id="desktopPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles/cardinal-os.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ambassadors.javafxsimpleosgui.CardinalOSController">
     <children>
         <!-- 2. TOP MENU BAR (MEMBER 1) -->
         <HBox alignment="CENTER_LEFT" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -16,16 +18,6 @@
                 <Label styleClass="menu-bar-label" text="Top Menu Bar Area (Dharl adds logo/menus)" />
             </children>
         </HBox>
-
-        <!-- 3. DESKTOP AREA (MEMBER 1) -->
-
-        <!-- START MENU SKELETON (Added for Member 2) -->
-        <!-- fx:id links this to the 'startMenu' variable in the controller -->
-        <VBox fx:id="startMenu" styleClass="start-menu" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
-            <children>
-                <Label styleClass="placeholder-label" text="Start Menu Content (Member 2)" />
-            </children>
-        </VBox>
 
         <!-- TERMINAL WINDOW SKELETON (Added for Member 2) -->
         <!-- fx:id links this to the 'terminalWindow' variable in the controller -->
@@ -36,18 +28,14 @@
                     <children>
                         <!-- Window control buttons -->
                         <HBox alignment="CENTER_LEFT" spacing="5.0">
-                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="21.0" styleClass="window-button-close" />
-                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="window-button-min" />
-                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="window-button-max" />
+                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleClose" prefHeight="23.0" prefWidth="21.0" styleClass="window-button-close" />
+                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMin" styleClass="window-button-min" />
+                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMax" styleClass="window-button-max" />
                         </HBox>
                         <Label styleClass="window-title-label" text="Terminal" />
                     </children>
                 </HBox>
-                <AnchorPane styleClass="window-content">
-                    <children>
-                        <Label styleClass="placeholder-label" text="Terminal Content (Dharl &amp; Janxen)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                    </children>
-                </AnchorPane>
+            <TextArea fx:id="TerminalBox" styleClass="window-content" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
 
@@ -65,13 +53,13 @@
                 </Button>
                 <Pane styleClass="dock-separator" />
                 <!-- Terminal Button -->
-                <Button contentDisplay="GRAPHIC_ONLY" styleClass="dock-button" text="Terminal">
+                <Button fx:id="TerminalButton" contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleTerminalClick" styleClass="dock-button" text="Terminal">
                     <graphic>
                         <SVGPath content="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" styleClass="dock-icon" />
                     </graphic>
                 </Button>
                 <!-- Notepad Button -->
-                <Button contentDisplay="GRAPHIC_ONLY" styleClass="dock-button" text="Notepad">
+                <Button fx:id="NotepadButton" contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleNotepadClick" styleClass="dock-button" text="Notepad">
                     <graphic>
                         <SVGPath content="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" styleClass="dock-icon" />
                     </graphic>
@@ -84,5 +72,33 @@
                 </Button>
             </children>
         </HBox>
+      <AnchorPane fx:id="startMenu" layoutX="66.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" styleClass="start-menu" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
+         <children>
+            <TextField layoutX="21.0" layoutY="21.0" promptText="Search apps and files..." styleClass="start-search-bar" />
+            <AnchorPane layoutX="1.0" layoutY="75.0" prefHeight="130.0" prefWidth="200.0" styleClass="centerBox" />
+            <Button contentDisplay="GRAPHIC_ONLY" layoutX="264.0" layoutY="223.0" mnemonicParsing="false" styleClass="dock-button" text="Shutdown">
+               <graphic>
+                  <SVGPath fx:id="startButtonIcon1" content="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" fill="RED" styleClass="dock-icon2" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <VBox fx:id="NotepadWindow" layoutX="400.0" layoutY="150.0" styleClass="notepad" visible="false">
+         <children>
+            <HBox fx:id="terminalTitleBar1" alignment="CENTER_LEFT" styleClass="notepad-title-bar">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleClose2" prefHeight="23.0" prefWidth="21.0" styleClass="notepad-button-close" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMin2" styleClass="notepad-button-min" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMax2" styleClass="notepad-button-max" />
+                     </children>
+                  </HBox>
+                  <Label styleClass="notepad-title-label" text="Notepad" />
+               </children>
+            </HBox>
+            <TextArea fx:id="TerminalBox1" prefHeight="360.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
