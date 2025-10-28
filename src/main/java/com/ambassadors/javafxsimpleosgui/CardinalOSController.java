@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -35,6 +36,7 @@ public class CardinalOSController implements Initializable {
     @FXML private Label clockLabel;
     @FXML private TextField searchField;
     @FXML private VBox searchResults;
+    @FXML private ImageView restartImage;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -64,6 +66,9 @@ public class CardinalOSController implements Initializable {
 
         // Initialize clock
         updateClock();
+
+        // Hide restart image initially
+        restartImage.setVisible(false);
 
         // Center windows on startup
         desktopPane.widthProperty().addListener((obs, oldVal, newVal) -> {
@@ -260,36 +265,66 @@ public class CardinalOSController implements Initializable {
         System.out.println("Sleep mode activated...");
         // You can add visual effect here (fade out screen, etc.)
         // For simulation: dim the desktop
-        desktopPane.setOpacity(0.3);
-        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
+        desktopPane.setOpacity(0);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(4));
         pause.setOnFinished(e -> desktopPane.setOpacity(1.0));
         pause.play();
         startMenu.setVisible(false);
     }
 
     @FXML
-    private void handleRestart(MouseEvent event) {
-        System.out.println("Restarting CardinalOS...");
-        // Close all windows
-        terminalWindow.setVisible(false);
-        NotepadWindow.setVisible(false);
-        startMenu.setVisible(false);
+private void handleRestart(MouseEvent event) {
+    System.out.println("Restarting CardinalOS...");
+    // Close all windows
+    terminalWindow.setVisible(false);
+    NotepadWindow.setVisible(false);
+    startMenu.setVisible(false);
 
-        // Show restart animation (fade out/in)
-        javafx.animation.FadeTransition fade = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), desktopPane);
-        fade.setFromValue(1.0);
-        fade.setToValue(0.0);
-        fade.setOnFinished(e -> {
-            // Reset terminal
-            initializeTerminal();
-            NotepadBox.clear();
-            javafx.animation.FadeTransition fadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), desktopPane);
-            fadeIn.setFromValue(0.0);
-            fadeIn.setToValue(1.0);
-            fadeIn.play();
+    // Prepare restart image (centered, visible, but start with opacity 0)
+    restartImage.setVisible(true);
+    double imgWidth = restartImage.getImage().getWidth();
+    double imgHeight = restartImage.getImage().getHeight();
+    restartImage.setFitWidth(imgWidth);
+    restartImage.setFitHeight(imgHeight);
+    restartImage.setLayoutX((desktopPane.getWidth() - imgWidth) / 2);
+    restartImage.setLayoutY((desktopPane.getHeight() - imgHeight) / 2);
+    restartImage.setOpacity(0.0);  // Start invisible
+
+    // Fade out desktop and fade in image simultaneously (1 second)
+    javafx.animation.FadeTransition fadeOutDesktop = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), desktopPane);
+    fadeOutDesktop.setFromValue(1.0);
+    fadeOutDesktop.setToValue(0.0);
+
+    javafx.animation.FadeTransition fadeInImage = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), restartImage);
+    fadeInImage.setFromValue(0.0);
+    fadeInImage.setToValue(1.0);
+
+    javafx.animation.ParallelTransition parallelFadeOut = new javafx.animation.ParallelTransition(fadeOutDesktop, fadeInImage);
+    parallelFadeOut.setOnFinished(e -> {
+        // Reset terminal and notepad after fade-out
+        initializeTerminal();
+        NotepadBox.clear();
+
+        // Fade in desktop and fade out image simultaneously (3 seconds)
+        javafx.animation.FadeTransition fadeInDesktop = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(3), desktopPane);
+        fadeInDesktop.setFromValue(0.0);
+        fadeInDesktop.setToValue(1.0);
+
+        javafx.animation.FadeTransition fadeOutImage = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(3), restartImage);
+        fadeOutImage.setFromValue(1.0);
+        fadeOutImage.setToValue(0.0);
+
+        javafx.animation.ParallelTransition parallelFadeIn = new javafx.animation.ParallelTransition(fadeInDesktop, fadeOutImage);
+        parallelFadeIn.setOnFinished(e2 -> {
+            // Hide the restart image after fade-in completes
+            restartImage.setVisible(false);
         });
-        fade.play();
-    }
+        parallelFadeIn.play();
+    });
+    parallelFadeOut.play();
+}
+
+
 
     @FXML
     private void handleShutdown(MouseEvent event) {
