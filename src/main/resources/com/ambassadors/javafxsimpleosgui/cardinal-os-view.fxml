@@ -86,7 +86,7 @@
                 </Button>
             </children>
         </HBox>
-        <AnchorPane fx:id="startMenu" layoutX="66.0" layoutY="51.0" prefHeight="300.0" prefWidth="250.0" styleClass="start-menu" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
+        <AnchorPane fx:id="startMenu" layoutX="66.0" layoutY="51.0" prefHeight="300.0" prefWidth="250.0" styleClass="start-menu" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
             <children>
                 <TextField fx:id="searchField" layoutX="20.0" layoutY="15.0" onKeyReleased="#handleSearch" prefWidth="220.0" promptText="Search apps and files..." styleClass="start-search-bar" />
                 <VBox fx:id="searchResults" layoutX="1.0" layoutY="69.0" prefHeight="159.0" prefWidth="320.0" spacing="3.0" style="-fx-background-color: #10151f; -fx-padding: 5 5 5 5;" />
