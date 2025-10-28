@@ -17,19 +17,19 @@
         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <!-- Logo/Brand -->
-                <Label styleClass="menu-bar-label" text="🐦 CardinalOS" style="-fx-font-weight: bold; -fx-padding: 0 0 0 15;" />
+                <Label style="-fx-font-weight: bold; -fx-padding: 0 0 0 15;" styleClass="menu-bar-label" text="🐦 CardinalOS" />
 
                 <!-- Menu Items -->
-                <Button styleClass="menu-bar-label" text="File" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" />
-                <Button styleClass="menu-bar-label" text="Edit" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" />
-                <Button styleClass="menu-bar-label" text="View" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" />
-                <Button styleClass="menu-bar-label" text="Help" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" styleClass="menu-bar-label" text="File" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" styleClass="menu-bar-label" text="Edit" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" styleClass="menu-bar-label" text="View" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;" styleClass="menu-bar-label" text="Help" />
 
                 <!-- Spacer to push clock to right -->
                 <Region HBox.hgrow="ALWAYS" />
 
                 <!-- Clock with better styling -->
-                <Label fx:id="clockLabel" styleClass="menu-bar-label" text="00:00" style="-fx-font-weight: bold; -fx-padding: 0 15 0 0;" />
+                <Label fx:id="clockLabel" style="-fx-font-weight: bold; -fx-padding: 0 15 0 0;" styleClass="menu-bar-label" text="00:00" />
             </children>
         </HBox>
 
@@ -86,13 +86,13 @@
                 </Button>
             </children>
         </HBox>
-        <AnchorPane fx:id="startMenu" layoutX="66.0" layoutY="51.0" prefHeight="300.0" prefWidth="250.0" styleClass="start-menu" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
+        <AnchorPane fx:id="startMenu" layoutX="66.0" layoutY="51.0" prefHeight="300.0" prefWidth="250.0" styleClass="start-menu" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0">
             <children>
-                <TextField fx:id="searchField" layoutX="15.0" layoutY="15.0" prefWidth="220.0" promptText="Search apps and files..." styleClass="start-search-bar" onKeyReleased="#handleSearch" />
-                <VBox fx:id="searchResults" layoutX="15.0" layoutY="55.0" prefHeight="180.0" prefWidth="220.0" spacing="3.0" />
+                <TextField fx:id="searchField" layoutX="20.0" layoutY="15.0" onKeyReleased="#handleSearch" prefWidth="220.0" promptText="Search apps and files..." styleClass="start-search-bar" />
+                <VBox fx:id="searchResults" layoutX="1.0" layoutY="69.0" prefHeight="159.0" prefWidth="320.0" spacing="3.0" style="-fx-background-color: #10151f; -fx-padding: 5 5 5 5;" />
 
                 <!-- Power Options at Bottom -->
-                <HBox layoutX="15.0" layoutY="245.0" spacing="5.0" alignment="CENTER">
+                <HBox alignment="CENTER" layoutX="170.0" layoutY="230.0" spacing="5.0">
                     <!-- Sleep Button -->
                     <Button contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleSleep" styleClass="dock-button" text="Sleep">
                         <graphic>
