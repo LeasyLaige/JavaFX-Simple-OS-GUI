@@ -90,11 +90,30 @@
             <children>
                 <TextField fx:id="searchField" layoutX="15.0" layoutY="15.0" prefWidth="220.0" promptText="Search apps and files..." styleClass="start-search-bar" onKeyReleased="#handleSearch" />
                 <VBox fx:id="searchResults" layoutX="15.0" layoutY="55.0" prefHeight="180.0" prefWidth="220.0" spacing="3.0" />
-                <Button contentDisplay="GRAPHIC_ONLY" layoutX="15.0" layoutY="245.0" prefWidth="220.0" mnemonicParsing="false" styleClass="dock-button" text="Shutdown">
-                    <graphic>
-                        <SVGPath fx:id="startButtonIcon1" content="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" fill="RED" styleClass="dock-icon2" />
-                    </graphic>
-                </Button>
+
+                <!-- Power Options at Bottom -->
+                <HBox layoutX="15.0" layoutY="245.0" spacing="5.0" alignment="CENTER">
+                    <!-- Sleep Button -->
+                    <Button contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleSleep" styleClass="dock-button" text="Sleep">
+                        <graphic>
+                            <SVGPath content="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" styleClass="dock-icon" />
+                        </graphic>
+                    </Button>
+
+                    <!-- Restart Button -->
+                    <Button contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleRestart" styleClass="dock-button" text="Restart">
+                        <graphic>
+                            <SVGPath content="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" styleClass="dock-icon" />
+                        </graphic>
+                    </Button>
+
+                    <!-- Shutdown Button -->
+                    <Button contentDisplay="GRAPHIC_ONLY" onMouseClicked="#handleShutdown" styleClass="dock-button" text="Shutdown">
+                        <graphic>
+                            <SVGPath content="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" styleClass="dock-icon2" />
+                        </graphic>
+                    </Button>
+                </HBox>
             </children>
         </AnchorPane>
         <VBox fx:id="NotepadWindow" layoutX="400.0" layoutY="150.0" styleClass="notepad" visible="false">

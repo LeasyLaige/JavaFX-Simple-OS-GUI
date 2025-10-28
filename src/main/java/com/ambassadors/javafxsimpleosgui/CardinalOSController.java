@@ -255,6 +255,57 @@ public class CardinalOSController implements Initializable {
         updateSearchResults(query);
     }
 
+    @FXML
+    private void handleSleep(MouseEvent event) {
+        System.out.println("Sleep mode activated...");
+        // You can add visual effect here (fade out screen, etc.)
+        // For simulation: dim the desktop
+        desktopPane.setOpacity(0.3);
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
+        pause.setOnFinished(e -> desktopPane.setOpacity(1.0));
+        pause.play();
+        startMenu.setVisible(false);
+    }
+
+    @FXML
+    private void handleRestart(MouseEvent event) {
+        System.out.println("Restarting CardinalOS...");
+        // Close all windows
+        terminalWindow.setVisible(false);
+        NotepadWindow.setVisible(false);
+        startMenu.setVisible(false);
+
+        // Show restart animation (fade out/in)
+        javafx.animation.FadeTransition fade = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), desktopPane);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setOnFinished(e -> {
+            // Reset terminal
+            initializeTerminal();
+            NotepadBox.clear();
+            javafx.animation.FadeTransition fadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1), desktopPane);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        });
+        fade.play();
+    }
+
+    @FXML
+    private void handleShutdown(MouseEvent event) {
+        System.out.println("Shutting down CardinalOS...");
+        // Fade out animation
+        javafx.animation.FadeTransition fade = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(1.5), desktopPane);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setOnFinished(e -> {
+            // Close the application
+            javafx.application.Platform.exit();
+            System.exit(0);
+        });
+        fade.play();
+    }
+
     private void updateSearchResults(String query) {
         searchResults.getChildren().clear();
 
